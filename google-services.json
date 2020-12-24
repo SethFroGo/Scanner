@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "34486864472",
+    "project_id": "cyberscanner-f8352",
+    "storage_bucket": "cyberscanner-f8352.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34486864472:android:2bcd579e59b45b0c59182d",
+        "android_client_info": {
+          "package_name": "com.frogoco.scanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34486864472-l9hhujkovab1j492mskhpr2tp88v6h00.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.frogoco.scanner",
+            "certificate_hash": "a8d783f92fa5d07b7cd705dcb22e8e8399179bf0"
+          }
+        },
+        {
+          "client_id": "34486864472-apqhrvr4s63qthm82cmj38idr57ogs2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIpO68r5vOKcCwsZfragDv8CRgk8V0vfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34486864472-apqhrvr4s63qthm82cmj38idr57ogs2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Scanner</string>
+    <string name="startButton">Start</string>
+    <string name="compButton">Compute</string>
+    <string name="newText">Changed</string>
+    <string name="newText2">Changed2</string>
+    <string name="newText3">Changed3</string>
+    <string name="newText4">Changed4</string>
+    <string name="newText5">Changed5</string>
+</resources>
