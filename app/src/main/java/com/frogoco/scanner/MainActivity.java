@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity{
     ImageView mImageView;
     private String photoPath;
     FirebaseVisionText ftext;
+    public ArrayList<String[]> rows, sequences;
+    public ArrayList<String> values;
+    public ArrayList<String> validVal = new ArrayList<String>() {{add("7A"); add("BD"); add("55");
+        add("1C"); add("E9");}};
 
 
 
@@ -79,16 +84,63 @@ public class MainActivity extends AppCompatActivity{
         selectImage(this);
     }
 
-    private void cleanText(FirebaseVisionText ftext) {
+    private boolean cleanText(FirebaseVisionText ftext) {
         String raw = ftext.getText();
         int numblock = ftext.getTextBlocks().size();
         ArrayList<FirebaseVisionText.TextBlock> blocks = new ArrayList<>();
         ArrayList<Integer> numlines = new ArrayList<>();
-        for (FirebaseVisionText.TextBlock block : ftext.getTextBlocks()) {
+        ArrayList<String[]> rows = new ArrayList<>();
+        values = new ArrayList<>();
+        String[] rawItems = raw.trim().split("\\s+");
+        for (String item : rawItems) {
+            System.out.println("start item: " + item);
+            item = item.toUpperCase();
+            item = item.replace('T', '7');
+            item = item.replace('0', 'D');
+            item = item.replace('I', '1');
+            item = item.replace('L', '1');
+            item = item.replace('S', '5');
+            item = item.replace('O', 'D');
+            System.out.println("finish item: " + item);
+            if (item.length() == 3) {
+                if (item.charAt(0) == item.charAt(1)) {
+                    StringBuilder si = new StringBuilder(item);
+                    si.deleteCharAt(0);
+                    item = si.toString();
+                }
+            }
+            if (validVal.contains(item)) {
+                values.add(item);
+            }
+        }
+        /*for (FirebaseVisionText.TextBlock block : ftext.getTextBlocks()) {
             blocks.add(block);
             numlines.add(block.getLines().size());
+            for (FirebaseVisionText.Line line : block.getLines()) {
+                String[] tline = line.toString().trim().split("\\s+");
+                System.out.println(tline);
+                for (String item : tline) {
+                    System.out.println("start item: " + item);
+                    item = item.toUpperCase();
+                    item = item.replace('T', '7');
+                    item = item.replace('0', 'D');
+                    item = item.replace('I', '1');
+                    item = item.replace('L', '1');
+                    item = item.replace('S', '5');
+                    item = item.replace('O', 'D');
+                    System.out.println("finish item: " + item);
+                    if (validVal.contains(item)) {
+                        values.add(item);
+                    }
+                }
+                rows.add(tline);
+            }
+        }*/
+        System.out.println(values.size());
+        if (values.size() == 16 || values.size() == 25 || values.size() == 36) {
+            return true;
         }
-
+        return false;
 
     }
 
@@ -101,6 +153,14 @@ public class MainActivity extends AppCompatActivity{
                     System.out.println("finish ftext");
                     System.out.println(ftext.getTextBlocks().size());
                     System.out.println(ftext.getText());
+                    boolean goodText = cleanText(ftext);
+                    System.out.println("cleaned");;
+                    if (goodText) {
+                        for (String val : values) {
+                            System.out.println(val);
+                        }
+                    }
+
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                     System.out.println("exbroke");
